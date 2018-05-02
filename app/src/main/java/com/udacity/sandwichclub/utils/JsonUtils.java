@@ -24,9 +24,11 @@ public class JsonUtils {
 
             JSONObject baseJsonResponse = new JSONObject(json);
 
-            String name = baseJsonResponse.getString("mainName");
+            //String name = baseJsonResponse.getString("mainName");
+            String name = baseJsonResponse.getJSONObject("name").getString("mainName");
 
-            JSONArray akaArray = baseJsonResponse.getJSONArray("alsoKnownAs");
+            //JSONArray akaArray = baseJsonResponse.getJSONArray("alsoKnownAs");
+            JSONArray akaArray = baseJsonResponse.getJSONObject("name").getJSONArray("alsoKnownAs");
             List<String> aka = new ArrayList<String>();
             for (int j = 0; j < akaArray.length(); j++) {
                 String otherNames = akaArray.getString(j);
