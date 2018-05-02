@@ -65,10 +65,9 @@ public class DetailActivity extends AppCompatActivity {
             // set views
             // Find the tv with the id also_known_tv
             TextView alsoKnownAsTv = (TextView) findViewById(R.id.also_known_tv);
-            alsoKnownAsTv.setText(toString().valueOf(currentSandwich.getAlsoKnownAs()));
-            for (int i = 0; i < currentSandwich.getAlsoKnownAs().size(); i++) {
-                alsoKnownAsTv.append(currentSandwich.getAlsoKnownAs().get(i) + "\n");
-            }
+            String aka = currentSandwich.getAlsoKnownAs().toString().replaceAll("\\[|\\]", "");
+            alsoKnownAsTv.setText(aka);
+            
         } else {
             // hide views
             TextView alsoKnownAsLabel = (TextView) findViewById(R.id.aka_label);
@@ -77,15 +76,14 @@ public class DetailActivity extends AppCompatActivity {
 
         // Find the tv with the id ingredients_tv
         TextView ingredientsTv = (TextView) findViewById(R.id.ingredients_tv);
-        ingredientsTv.setText(toString().valueOf(currentSandwich.getIngredients()));
-        //for (int i = 0; i < currentSandwich.getIngredients().size(); i++) {
-        //    ingredientsTv.append(currentSandwich.getIngredients().get(i) + "\n");
-        //}
+        String diffIngredients = currentSandwich.getIngredients().toString().replaceAll("\\[|\\]", "");
+        ingredientsTv.setText(diffIngredients);
 
         if (!TextUtils.isEmpty(currentSandwich.getPlaceOfOrigin())) {
             // Put string into textview
             TextView originTv = (TextView) findViewById(R.id.origin_tv);
             originTv.setText(toString().valueOf(currentSandwich.getPlaceOfOrigin()));
+            
         } else {
             // hide views
             TextView placeOfOriginLabel = (TextView) findViewById(R.id.origin_label);
@@ -96,5 +94,4 @@ public class DetailActivity extends AppCompatActivity {
         TextView descriptionTv = (TextView) findViewById(R.id.description_tv);
         descriptionTv.setText(toString().valueOf(currentSandwich.getDescription()));
     }
-
 }
